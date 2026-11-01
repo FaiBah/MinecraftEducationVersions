@@ -1,7 +1,11 @@
 {
-  "stable": "26.32",
+  "stable": "26.33",
   "beta": "26.30",
   "versions": [
+    {
+      "version": "26.33",
+      "type": "stable"
+    },
     {
       "version": "26.32",
       "type": "stable"
