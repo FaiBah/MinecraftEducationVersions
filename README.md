@@ -1,90 +1,94 @@
 # 🎮 Minecraft Education Versions
 
-> 📦 A simple, automatically updated list of **Minecraft Education** versions.
+> 📦 An automatically updated database of Minecraft Education **Stable** and **Beta** versions.
+>
+> Version data is collected from the [Minecraft Education Change Log](https://edusupport.minecraft.net/) and stored in [`versions.json`](https://github.com/FaiBah/MinecraftEducationVersions/blob/main/versions.json).
 
-Version data is collected from the official [Minecraft Education Change Log](https://edusupport.minecraft.net/hc/en-us/articles/360047556451-Minecraft-Education-Change-Log) and stored in [`versions.json`](https://github.com/FaiBah/MinecraftEducationVersions/blob/main/versions.json).
+---
 
-## 📄 JSON
+## 📦 Version Overview
 
-Fetch the latest version data:
+| Type | Field | Description |
+|:--|:--|:--|
+| 🟢 Stable | `stable` | Latest stable version |
+| 🔵 Beta | `beta` | Latest beta/preview version |
+| 📚 Version History | `versions` | Complete version history |
 
-**🔗 [Raw JSON](https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json)**
+Each version entry contains:
+
+| Field | Description |
+|:--|:--|
+| `version` | Minecraft Education version |
+| `type` | `stable`, `beta`, or `stable,beta` |
+
+<sub>Version lists are ordered from newest to oldest.</sub>
+
+## 🔗 JSON Data
+
+**File:** [`versions.json`](https://github.com/FaiBah/MinecraftEducationVersions/blob/main/versions.json)
+
+[📥 View Raw JSON](https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json)
+
+### JSON Structure
 
 ```json
 {
-  "stable": "26.32",
-  "beta": "26.30",
+  "stable": "<latest-stable>",
+  "beta": "<latest-beta>",
   "versions": [
     {
-      "version": "26.32",
+      "version": "<version>",
       "type": "stable"
     },
     {
-      "version": "26.30",
+      "version": "<version>",
       "type": "beta"
-    },
-    {
-      "version": "1.21.90.1",
-      "type": "stable,beta"
     }
   ]
 }
 ```
 
-## 📋 Fields
-
-| Field      | Description                 |
-| ---------- | --------------------------- |
-| `stable`   | Latest stable version       |
-| `beta`     | Latest beta/preview version |
-| `versions` | Complete version history    |
-
-Each version contains:
-
-| Field     | Description                        |
-| --------- | ---------------------------------- |
-| `version` | Minecraft Education version        |
-| `type`    | `stable`, `beta`, or `stable,beta` |
-
-If the same version was released as both stable and beta/preview, it is combined into a single entry with `stable,beta`.
+---
 
 ## 🚀 Usage
 
-### Latest Stable
+**Requirement:** [jq](https://jqlang.github.io/jq/)
+
+All commands retrieve data directly from the raw JSON file.
+
+### 🟢 Latest Stable
 
 ```bash
 curl -s https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json | jq -r '.stable'
 ```
 
-### Latest Beta
+### 🔵 Latest Beta
 
 ```bash
 curl -s https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json | jq -r '.beta'
 ```
 
-### All Versions
+### 📚 All Versions
 
 ```bash
 curl -s https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json | jq -r '.versions[] | .version'
 ```
 
-### Stable Versions
+### 🟢 Stable Versions
 
 ```bash
 curl -s https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json | jq -r '.versions[] | select(.type | contains("stable")) | .version'
 ```
 
-### Beta Versions
+### 🔵 Beta Versions
 
 ```bash
 curl -s https://raw.githubusercontent.com/FaiBah/MinecraftEducationVersions/main/versions.json | jq -r '.versions[] | select(.type | contains("beta")) | .version'
 ```
 
-## 🌐 Source
+---
 
-* 🔗 [Minecraft Education Change Log](https://edusupport.minecraft.net/hc/en-us/articles/360047556451-Minecraft-Education-Change-Log)
-* 🔗 [Minecraft Education API](https://edusupport.minecraft.net/api/v2/help_center/en-us/articles/360047556451.json)
+## 🌐 Sources
 
-## ⚠️ Disclaimer
-
-This is an unofficial community project and is not affiliated with Mojang or Microsoft.
+- [Minecraft Education Change Log](https://edusupport.minecraft.net/)
+- [Minecraft Education API](https://edusupport.minecraft.net/)
